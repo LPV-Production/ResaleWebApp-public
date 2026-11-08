@@ -1,0 +1,36 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+interface Props { title?: string }
+const { title = 'Resale Manager' } = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Resale" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Installation sur l'écran d'accueil du téléphone -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>{title}</title>
+    <!-- Applique le thème clair/sombre AVANT l'affichage, pour éviter un flash de couleur -->
+    <script is:inline>
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem('rm_theme'); } catch (e) {}
+        var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

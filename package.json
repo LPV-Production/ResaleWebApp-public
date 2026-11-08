@@ -1,0 +1,34 @@
+{
+  "name": "resale-manager",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "dev:full": "astro build && wrangler dev",
+    "db:local": "wrangler d1 migrations apply resale-manager --local",
+    "db:remote": "wrangler d1 migrations apply resale-manager --remote",
+    "compte": "node scripts/creer-compte.mjs",
+    "deploy": "astro build && wrangler deploy",
+    "astro": "astro",
+    "cles-push": "node scripts/generer-cles-push.mjs"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^9.1.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "astro": "^7.4.1",
+    "svelte": "^5.57.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261019.1",
+    "wrangler": "^4.151.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261019.1": true
+  }
+}
